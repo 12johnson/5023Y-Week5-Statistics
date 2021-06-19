@@ -193,3 +193,69 @@ augment_gestation %>%
 ### our model has explained most or all of the linear pattern, 
 ### and has an equal amount of error along the regression.
 
+### If Cook’s Distance is greater than 4/n for any observation,
+### where n is the number of observations used to create the model,
+### then that observation is strongly influential. 
+### This does NOT mean you should just remove that observation.
+### In fact, you should plan on leaving all observations in 
+### unless you have really good reason not to.
+
+### In our example (mammals), n = 62, so the threshold for 
+### a second look is 4/62. To make and store that as a variable here:
+
+cook_limit <- as.numeric(4 / count(augment_gestation))
+### I use the augmented dataframe in case any NA values were
+### dropped while fitting the model. 
+cook_limit
+
+augment_gestation %>% 
+  ggplot(aes(x = as.numeric(rownames(augment_gestation)), y = .cooksd)) +
+  geom_col() +
+  geom_hline(yintercept = cook_limit,
+             color = "red",
+             linetype = "dashed")+
+  ggtitle("Cook's Distance")
+
+### Because of the scale, it is difficult to see exactly 
+### how many influential outliers we might have, but we have
+### at least ENORMOUS point of leverage, in fact because we have
+### ordered the plot on the x-axis by row name, we can see that it 
+### is the first row in our data frame.
+
+### Data points which cross Cook’s distance can have too much
+### influence on the fit of our model. But Cook’s distance should
+### NOT be a binary decision making tool to decide whether or not
+### a value should be considered an outlier, or excluded from a dataset.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
