@@ -98,5 +98,63 @@ augment_gestation
 ### our ability to determine significance,
 ### build confidence intervals and make predictions will be poor
 
+### A major assumption of linear regression is that
+### the residuals are normally distributed. 
+### The standardised residuals for our model (y actual −y predicted )
+### are stored in the $.std.resid column from the
+### broom::augment() function
 
+augment_gestation %>% 
+  ggplot(aes(x = .std.resid)) +
+  geom_histogram()+
+  ggtitle("Histogram of the model residuals")
+
+### code above creates a histogram showing the frequencies of std.resid
+
+augment_gestation %>%
+  ggplot(aes(sample = .std.resid)) +
+  geom_qq()+
+  stat_qq_line()+
+  ggtitle("QQ plot")
+
+### code above creates a qq plot to see if the residuals follow
+### a normal distribution of errors
+
+knitr::include_graphics("img/normal.png")
+knitr::include_graphics("img/right skew.png")
+knitr::include_graphics("img/left skew.png")
+knitr::include_graphics("img/underdispersed.png")
+knitr::include_graphics("img/overdispersed.png")
+
+### first image is normally distributed data
+### The normal distribution is symmetric,
+### so it has no skew (the mean is equal to the median).
+### On a Q-Q plot normally distributed data appears as roughly
+### a straight line (although the ends of the Q-Q plot often
+### start to deviate from the straight line).
+
+### second image is right skewed data
+### this example is an exponential distribution
+### On a Q-Q plot right-skewed data appears curved 
+### ABOVE THE LINE
+
+### the third image is left skewed data
+### this is an example of a negative exponential distribution.
+### Left-skew is also known as negative skew.
+### On a Q-Q plot left-skewed data appears curved 
+### (the opposite of right-skewed data).
+### UNDER THE LINE
+
+### the fourth image is Under-dispersed data
+### distribution that is under-dispersed relative to a normal 
+### distribution (in this case it is the uniform distribution).
+### Under-dispersed data has a reduced number of outliers
+### (i.e. the distribution has thinner tails than a normal
+### distribution). Under-dispersed data is also known as having a 
+### platykurtic distribution and as having negative excess kurtosis.
+### kurtosis - describes the frequency of distribution of
+### score clusters in the tails or peak
+### Platykurtic - Fewer values in the tails and
+### fewer values close to the mean
+### On a Q-Q plot under-dispersed data appears S shaped.
 
