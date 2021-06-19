@@ -170,3 +170,26 @@ knitr::include_graphics("img/overdispersed.png")
 ### (i.e. sharply peaked with heavy tails)
 ### On a Q-Q plot over-dispersed data appears as a flipped S shape 
 ### (the opposite of under-dispersed data).
+
+augment_gestation %>%
+  ggplot(aes(x=.fitted, y= .std.resid)) +
+  geom_point()+
+  ggtitle("Standardised residuals against Fitted values from the model")
+
+augment_gestation %>%
+  ggplot(aes(x=.fitted, y= .resid)) +
+  geom_point()+
+  ggtitle("Residuals against Fitted values from the model")
+
+### the pattern is identical but the scale is very different. 
+### This is because your residuals are on the original scale
+### of the dependent variable, whereas your standardised residuals
+### have been fitted onto a distribution of standard deviation.
+### Here we can see there is clearly both an increase in the
+### variance of the residuals as the fitted values increase
+### AND there is a clear trend in the residuals. Not looking good!
+### Remember what we WANT to see is no trends here and an
+### even distribution of the residuals - this would indicate 
+### our model has explained most or all of the linear pattern, 
+### and has an equal amount of error along the regression.
+
