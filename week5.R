@@ -226,6 +226,12 @@ augment_gestation %>%
 ### influence on the fit of our model. But Cook’s distance should
 ### NOT be a binary decision making tool to decide whether or not
 ### a value should be considered an outlier, or excluded from a dataset.
+### You should have a very compelling reason to believe that an
+### observation is not representative of the population that you
+### are trying to study (e.g. measurement error, mislabeled sample, 
+### etc.) before you even consider removing it. Your default should
+### be to keep everything. How different a point is from the others 
+### is not a good enough reason to remove it from your analyses.
 
 
 
