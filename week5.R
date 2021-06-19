@@ -158,3 +158,15 @@ knitr::include_graphics("img/overdispersed.png")
 ### fewer values close to the mean
 ### On a Q-Q plot under-dispersed data appears S shaped.
 
+### the fifth image is of Over-dispersed data.
+### over-dispersed relative to a normal distribution 
+### (in this case it is a Laplace distribution). 
+### Over-dispersed data has an increased number of outliers
+### (i.e. the distribution has fatter tails than a normal distribution).
+### Over-dispersed data is also known as having a 
+### leptokurtic distribution and as having positive excess kurtosis.
+### leptokurtic -More values in the distribution tails and 
+### more values close to the mean 
+### (i.e. sharply peaked with heavy tails)
+### On a Q-Q plot over-dispersed data appears as a flipped S shape 
+### (the opposite of under-dispersed data).
